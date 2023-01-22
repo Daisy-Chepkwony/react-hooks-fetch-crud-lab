@@ -18,13 +18,13 @@ export const handlers = [
     if (isNaN(parseInt(id))) {
       return res(ctx.status(404), ctx.json({ message: "Invalid ID" }));
     }
-    questions = questions.filter((q) => q.id !== parseInt(id));
+    questions = questions.filter((e) => e.id !== parseInt(id));
     return res(ctx.json({}));
   }),
   rest.patch("http://localhost:4000/questions/:id", (req, res, ctx) => {
     const { id } = req.params;
     const { correctIndex } = req.body;
-    const question = questions.find((q) => q.id === parseInt(id));
+    const question = questions.find((e) => e.id === parseInt(id));
     if (!question) {
       return res(ctx.status(404), ctx.json({ message: "Invalid ID" }));
     }
