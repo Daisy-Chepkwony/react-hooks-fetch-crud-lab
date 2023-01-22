@@ -6,7 +6,7 @@ function QuestionList() {
 
   useEffect(() => {
     fetch("http://localhost:4000/questions")
-      .then((r) => r.json())
+      .then((res) => res.json())
       .then((questions) => {
         setQuestions(questions);
       });
@@ -16,9 +16,9 @@ function QuestionList() {
     fetch(`http://localhost:4000/questions/${id}`, {
       method: "DELETE",
     })
-      .then((r) => r.json())
+      .then((res) => res.json())
       .then(() => {
-        const updatedQuestions = questions.filter((q) => q.id !== id);
+        const updatedQuestions = questions.filter((e) => e.id !== id);
         setQuestions(updatedQuestions);
       });
   }
@@ -31,20 +31,20 @@ function QuestionList() {
       },
       body: JSON.stringify({ correctIndex }),
     })
-      .then((r) => r.json())
+      .then((res) => res.json())
       .then((updatedQuestion) => {
-        const updatedQuestions = questions.map((q) => {
-          if (q.id === updatedQuestion.id) return updatedQuestion;
-          return q;
+        const updatedQuestions = questions.map((e) => {
+          if (e.id === updatedQuestion.id) return updatedQuestion;
+          return e;
         });
         setQuestions(updatedQuestions);
       });
   }
 
-  const questionItems = questions.map((q) => (
+  const questionItems = questions.map((e) => (
     <QuestionItem
-      key={q.id}
-      question={q}
+      key={e.id}
+      question={e}
       onDeleteClick={handleDeleteClick}
       onAnswerChange={handleAnswerChange}
     />
